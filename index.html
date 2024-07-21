@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARK: Survival Ascended - Tek Conversion Table</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>(PVE Official) TEK CONVERSION TABLE</h1>
+            <img src="https://ark.wiki.gg/images/9/96/ARK_Survival_Ascended.png" alt="ARK Survival Ascended">
+        </header>
+        <div class="conversion-tables">
+            <div class="table-section">
+                <h2>RESOURCES</h2>
+                <table id="resources-table">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Conversion Value</th>
+                            <th>Accept</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Resources will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-section">
+                <h2>CRAFTED ITEMS</h2>
+                <table id="items-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Conversion Value</th>
+                            <th>Accept</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Items will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="convert-section">
+            <label for="tek-amount">Enter Tek Amount To Convert</label>
+            <input type="number" id="tek-amount" value="100">
+            <button id="generate-btn">Generate</button>
+        </div>
+        <div id="output-section">
+            <h2>Accepted Items List</h2>
+            <ul id="accepted-list">
+                <!-- Accepted items will be displayed here -->
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
