@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const resources = [
         { name: "Black Pearls", value: 1000, img: "https://ark.fandom.com/wiki/File:Black_Pearl.png" },
@@ -57,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const valueCell = row.insertCell(1);
         const acceptCell = row.insertCell(2);
 
-        nameCell.innerHTML = `<img src="${img}" alt="${name}" onerror="this.src='https://ark.fandom.com/wiki/File:Item_Icons.png'"> ${name}`;
+        nameCell.innerHTML = `<img src="${img}" alt="${name}"> ${name}`;
         valueCell.innerHTML = `<input type="number" value="${value}" class="conversion-value">`;
         acceptCell.innerHTML = `<input type="checkbox" class="accept-checkbox">`;
     }
@@ -76,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function addAcceptedItem(name, value, img) {
             const li = document.createElement("li");
-            li.innerHTML = `<img src="${img}" alt="${name}" onerror="this.src='https://ark.fandom.com/wiki/File:Item_Icons.png'"> ${name}: ${value}`;
+            li.innerHTML = `<img src="${img}" alt="${name}"> ${name}: ${value}`;
             acceptedList.appendChild(li);
         }
 
