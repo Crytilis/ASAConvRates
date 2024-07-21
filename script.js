@@ -56,7 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const valueCell = row.insertCell(1);
         const acceptCell = row.insertCell(2);
 
-        nameCell.innerHTML = `<img src="https://ark.wiki.gg/images/${name.replace(/ /g, "_")}.png" alt="${name}"> ${name}`;
+        const imageName = name.replace(/ /g, "_");
+        nameCell.innerHTML = `<img src="https://ark.wiki.gg/wiki/File:${imageName}.png" alt="${name}"> ${name}`;
         valueCell.innerHTML = `<input type="number" value="${value}" class="conversion-value">`;
         acceptCell.innerHTML = `<input type="checkbox" class="accept-checkbox">`;
     }
@@ -74,8 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
         acceptedList.innerHTML = "";
 
         function addAcceptedItem(name, value) {
+            const imageName = name.replace(/ /g, "_");
             const li = document.createElement("li");
-            li.innerHTML = `<img src="https://ark.wiki.gg/images/${name.replace(/ /g, "_")}.png" alt="${name}"> ${name}: ${value}`;
+            li.innerHTML = `<img src="https://ark.wiki.gg/wiki/File:${imageName}.png" alt="${name}"> ${name}: ${value}`;
             acceptedList.appendChild(li);
         }
 
