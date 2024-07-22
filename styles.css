@@ -13,6 +13,7 @@ body {
     background-color: #2a2d34;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 header {
@@ -96,7 +97,7 @@ tr:not(:last-child) td {
 #tek-amount {
     width: 100px;
     text-align: center;
-    margin-right: 10px;
+    margin: 0 auto;
 }
 
 button {
@@ -117,6 +118,7 @@ button:hover {
     padding: 20px;
     margin-top: 20px;
     border-radius: 10px;
+    display: none;
 }
 
 #accepted-list {
