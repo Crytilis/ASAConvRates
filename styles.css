@@ -151,3 +151,9 @@ button:hover {
     margin: 5px 0;
     font-weight: bold;
 }
+
+.disclaimer {
+    text-align: center;
+    margin-top: 10px;
+    color: #ecf0f1;
+}
