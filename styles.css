@@ -94,6 +94,10 @@ tr:not(:last-child) td {
     margin-bottom: 20px;
 }
 
+#convert-label {
+    margin-right: 10px;
+}
+
 #tek-amount {
     width: 100px;
     text-align: center;
