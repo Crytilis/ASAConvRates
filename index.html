@@ -11,6 +11,10 @@
         <header>
             <h1>(PVE Official) TEK CONVERSION TABLE</h1>
             <img src="images/ASA_Logo.webp" alt="ARK Survival Ascended">
+            <div class="mode-toggle">
+                <button id="public-mode-btn" class="active">Public Mode</button>
+                <button id="trader-mode-btn">Trader Mode</button>
+            </div>
         </header>
         <div class="conversion-tables">
             <div class="table-section">
@@ -46,7 +50,7 @@
         </div>
         <div class="convert-section">
             <label for="tek-amount">Enter Tek Amount To Convert</label>
-            <input type="number" id="tek-amount" value="100">
+            <input type="number" id="tek-amount" value="1" min="1">
             <button id="generate-btn">Generate</button>
         </div>
         <div id="output-section">
@@ -54,6 +58,7 @@
             <ul id="accepted-list">
                 <!-- Accepted items will be displayed here -->
             </ul>
+            <button id="copy-btn">Copy to Clipboard</button>
         </div>
     </div>
     <script src="script.js"></script>
