@@ -47,6 +47,54 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Vault", value: 40.0 }
     ];
 
+    const defaultResourceValues = [
+        { name: "Black Pearls", value: 1000 },
+        { name: "Cementing Paste / Achatina Paste", value: 8000 },
+        { name: "Clay", value: 10000 },
+        { name: "Crystal", value: 15000 },
+        { name: "Electronics", value: 15000 },
+        { name: "Gun Powder", value: 200000 },
+        { name: "Hard Polymer", value: 15000 },
+        { name: "Hide", value: 250000 },
+        { name: "Metal Ingot", value: 30000 },
+        { name: "Obsidian", value: 50000 },
+        { name: "Oil", value: 100000 },
+        { name: "Pelt", value: 20000 },
+        { name: "Silica Pearls", value: 100000 },
+        { name: "Spark Powder", value: 250000 },
+        { name: "Sulfur", value: 300000 },
+        { name: "Tree Sap", value: 25000 }
+    ];
+
+    const defaultItemValues = [
+        { name: "Chemistry Bench", value: 20.0 },
+        { name: "Cloning Chamber", value: 1.0 },
+        { name: "CryoFridge", value: 100.0 },
+        { name: "Cryopod", value: 1000.0 },
+        { name: "Industrial Cooker", value: 15.0 },
+        { name: "Industrial Forge", value: 10.0 },
+        { name: "Industrial Grill", value: 150.0 },
+        { name: "Industrial Grinder", value: 7.0 },
+        { name: "Shotgun Ammo", value: 5000.0 },
+        { name: "Tek Behemoth Cellar Door", value: 7.0 },
+        { name: "Tek Ceiling", value: 100.0 },
+        { name: "Tek Dedicated Storage", value: 30.0 },
+        { name: "Tek Foundation", value: 80.0 },
+        { name: "Tek Generator", value: 3.0 },
+        { name: "Tek Large Wall", value: 30.0 },
+        { name: "Tek Pillars", value: 200.0 },
+        { name: "Tek Replicator", value: 2.0 },
+        { name: "Tek Teleporter (Small)", value: 8.0 },
+        { name: "Tek Teleporter (Medium)", value: 4.0 },
+        { name: "Tek Teleporter (Large)", value: 2.0 },
+        { name: "Tek Triangle Ceilings", value: 200.0 },
+        { name: "Tek Trough", value: 5.0 },
+        { name: "Tek Wall", value: 120.0 },
+        { name: "Transmitter", value: 3.0 },
+        { name: "Vacuum Compartment", value: 17.0 },
+        { name: "Vault", value: 40.0 }
+    ];
+
     const resourcesTable = document.getElementById("resources-table").getElementsByTagName("tbody")[0];
     const itemsTable = document.getElementById("items-table").getElementsByTagName("tbody")[0];
     const tekAmountInput = document.getElementById("tek-amount");
@@ -57,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const traderModeBtn = document.getElementById("trader-mode-btn");
     const outputSection = document.getElementById("output-section");
     const convertLabel = document.getElementById("convert-label");
+    const populateBtn = document.getElementById("populate-btn");
     const modeIndicator = document.createElement('div');
 
     modeIndicator.id = 'mode-indicator';
@@ -148,6 +197,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function populateStandardValues() {
+        resourcesTable.querySelectorAll('tr').forEach((row, index) => {
+            const valueInput = row.querySelector('.conversion-value');
+            valueInput.value = defaultResourceValues[index].value;
+        });
+
+        itemsTable.querySelectorAll('tr').forEach((row, index) => {
+            const valueInput = row.querySelector('.conversion-value');
+            valueInput.value = defaultItemValues[index].value;
+        });
+    }
+
     function setMode(mode) {
         if (mode === "public") {
             modeIndicator.textContent = "Mode: Public";
@@ -159,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tekAmountInput.style.margin = "0 auto";
             generateBtn.style.display = "none";
             outputSection.style.display = "none";
+            populateBtn.style.display = "none";
 
             resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.setAttribute("readonly", "readonly");
@@ -187,13 +249,16 @@ document.addEventListener("DOMContentLoaded", () => {
             generateBtn.style.display = "block";
             generateBtn.style.margin = "0 auto";
             outputSection.style.display = "block";
+            populateBtn.style.display = "block";
 
             resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.removeAttribute("readonly");
+                input.value = 0;
             });
 
             itemsTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.removeAttribute("readonly");
+                input.value = 0;
             });
 
             resourcesTable.querySelectorAll('.accept-checkbox').forEach(checkbox => {
@@ -209,6 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tekAmountInput.addEventListener("input", updateValues);
     generateBtn.addEventListener("click", generateAcceptedList);
     copyBtn.addEventListener("click", copyToClipboard);
+    populateBtn.addEventListener("click", populateStandardValues);
     publicModeBtn.addEventListener("click", () => setMode("public"));
     traderModeBtn.addEventListener("click", () => setMode("trader"));
 
