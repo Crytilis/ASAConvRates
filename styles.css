@@ -89,9 +89,3 @@ button:hover {
 #accepted-list li {
     margin: 5px 0;
 }
-
-#accepted-list img {
-    width: 20px;
-    vertical-align: middle;
-    margin-right: 10px;
-}
