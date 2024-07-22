@@ -55,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copy-btn");
     const publicModeBtn = document.getElementById("public-mode-btn");
     const traderModeBtn = document.getElementById("trader-mode-btn");
+    const modeIndicator = document.createElement('div');
+
+    modeIndicator.id = 'mode-indicator';
+    modeIndicator.style.color = '#5dade2';
+    modeIndicator.style.position = 'absolute';
+    modeIndicator.style.top = '10px';
+    modeIndicator.style.left = '10px';
+    modeIndicator.style.fontWeight = 'bold';
+    document.body.appendChild(modeIndicator);
 
     function addRow(table, name, value) {
         const row = table.insertRow();
@@ -139,10 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setMode(mode) {
         if (mode === "public") {
+            modeIndicator.textContent = "Mode: Public";
             publicModeBtn.classList.add("active");
             traderModeBtn.classList.remove("active");
 
             tekAmountInput.style.display = "block";
+            tekAmountInput.style.margin = "0 auto";
             generateBtn.style.display = "none";
             acceptedList.style.display = "none";
             copyBtn.style.display = "none";
@@ -165,11 +176,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             updateValues();
         } else if (mode === "trader") {
+            modeIndicator.textContent = "Mode: Trader";
             publicModeBtn.classList.remove("active");
             traderModeBtn.classList.add("active");
 
             tekAmountInput.style.display = "none";
             generateBtn.style.display = "block";
+            generateBtn.style.margin = "0 auto";
             acceptedList.style.display = "block";
             copyBtn.style.display = "block";
 
