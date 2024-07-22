@@ -49,6 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resourcesTable = document.getElementById("resources-table").getElementsByTagName("tbody")[0];
     const itemsTable = document.getElementById("items-table").getElementsByTagName("tbody")[0];
+    const tekAmountInput = document.getElementById("tek-amount");
+    const generateBtn = document.getElementById("generate-btn");
+    const acceptedList = document.getElementById("accepted-list");
+    const copyBtn = document.getElementById("copy-btn");
+    const publicModeBtn = document.getElementById("public-mode-btn");
+    const traderModeBtn = document.getElementById("trader-mode-btn");
 
     function addRow(table, name, value) {
         const row = table.insertRow();
@@ -57,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const acceptCell = row.insertCell(2);
 
         nameCell.textContent = name;
-        valueCell.innerHTML = `<input type="number" value="${value}" class="conversion-value">`;
-        acceptCell.innerHTML = `<input type="checkbox" class="accept-checkbox">`;
+        valueCell.innerHTML = `<input type="number" value="${value}" class="conversion-value" readonly>`;
+        acceptCell.innerHTML = `<input type="checkbox" class="accept-checkbox" style="display: none;">`;
     }
 
     function populateTable(table, items) {
@@ -75,8 +81,23 @@ document.addEventListener("DOMContentLoaded", () => {
         populateTable(itemsTable, items);
     }
 
-    document.getElementById("generate-btn").addEventListener("click", () => {
-        const acceptedList = document.getElementById("accepted-list");
+    function updateValues() {
+        const tekAmount = parseInt(tekAmountInput.value, 10);
+
+        resourcesTable.querySelectorAll('tr').forEach(row => {
+            const valueInput = row.querySelector('.conversion-value');
+            const baseValue = parseFloat(valueInput.defaultValue);
+            valueInput.value = baseValue * tekAmount;
+        });
+
+        itemsTable.querySelectorAll('tr').forEach(row => {
+            const valueInput = row.querySelector('.conversion-value');
+            const baseValue = parseFloat(valueInput.defaultValue);
+            valueInput.value = baseValue * tekAmount;
+        });
+    }
+
+    function generateAcceptedList() {
         acceptedList.innerHTML = "";
 
         function addAcceptedItem(name, value) {
@@ -104,5 +125,77 @@ document.addEventListener("DOMContentLoaded", () => {
                 addAcceptedItem(name, value);
             }
         }
-    });
+    }
+
+    function copyToClipboard() {
+        let markdown = "";
+        acceptedList.querySelectorAll("li").forEach(item => {
+            markdown += `- ${item.textContent}\n`;
+        });
+        navigator.clipboard.writeText(markdown).then(() => {
+            alert("Copied to clipboard!");
+        });
+    }
+
+    function setMode(mode) {
+        if (mode === "public") {
+            publicModeBtn.classList.add("active");
+            traderModeBtn.classList.remove("active");
+
+            tekAmountInput.style.display = "block";
+            generateBtn.style.display = "none";
+            acceptedList.style.display = "none";
+            copyBtn.style.display = "none";
+
+            resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
+                input.setAttribute("readonly", "readonly");
+            });
+
+            itemsTable.querySelectorAll('.conversion-value').forEach(input => {
+                input.setAttribute("readonly", "readonly");
+            });
+
+            resourcesTable.querySelectorAll('.accept-checkbox').forEach(checkbox => {
+                checkbox.style.display = "none";
+            });
+
+            itemsTable.querySelectorAll('.accept-checkbox').forEach(checkbox => {
+                checkbox.style.display = "none";
+            });
+
+            updateValues();
+        } else if (mode === "trader") {
+            publicModeBtn.classList.remove("active");
+            traderModeBtn.classList.add("active");
+
+            tekAmountInput.style.display = "none";
+            generateBtn.style.display = "block";
+            acceptedList.style.display = "block";
+            copyBtn.style.display = "block";
+
+            resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
+                input.removeAttribute("readonly");
+            });
+
+            itemsTable.querySelectorAll('.conversion-value').forEach(input => {
+                input.removeAttribute("readonly");
+            });
+
+            resourcesTable.querySelectorAll('.accept-checkbox').forEach(checkbox => {
+                checkbox.style.display = "block";
+            });
+
+            itemsTable.querySelectorAll('.accept-checkbox').forEach(checkbox => {
+                checkbox.style.display = "block";
+            });
+        }
+    }
+
+    tekAmountInput.addEventListener("input", updateValues);
+    generateBtn.addEventListener("click", generateAcceptedList);
+    copyBtn.addEventListener("click", copyToClipboard);
+    publicModeBtn.addEventListener("click", () => setMode("public"));
+    traderModeBtn.addEventListener("click", () => setMode("trader"));
+
+    setMode("public");
 });
