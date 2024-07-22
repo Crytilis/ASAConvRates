@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const outputSection = document.getElementById("output-section");
     const convertLabel = document.getElementById("convert-label");
     const populateBtn = document.getElementById("populate-btn");
+    const disclaimer = document.getElementById("disclaimer");
     const modeIndicator = document.createElement('div');
 
     modeIndicator.id = 'mode-indicator';
@@ -233,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
             generateBtn.style.display = "none";
             outputSection.style.display = "none";
             populateBtn.style.display = "none";
+            disclaimer.style.display = "block";
 
             resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.setAttribute("readonly", "readonly");
@@ -262,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
             generateBtn.style.margin = "0 auto";
             outputSection.style.display = "block";
             populateBtn.style.display = "block";
+            disclaimer.style.display = "none";
 
             resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.removeAttribute("readonly");
