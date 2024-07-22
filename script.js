@@ -150,8 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const baseValue = parseFloat(valueInput.defaultValue);
             let calculatedValue = baseValue * tekAmount;
 
-            if (calculatedValue === 0 && tekAmount === 100) {
-                calculatedValue = 1.0;
+            if (baseValue === 0 && tekAmount >= 100) {
+                calculatedValue = Math.floor(tekAmount / 100);
             }
 
             valueInput.value = (calculatedValue).toFixed(1);
@@ -162,8 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const baseValue = parseFloat(valueInput.defaultValue);
             let calculatedValue = baseValue * tekAmount;
 
-            if (calculatedValue === 0 && tekAmount === 100) {
-                calculatedValue = 1.0;
+            if (baseValue === 0 && tekAmount >= 100) {
+                calculatedValue = Math.floor(tekAmount / 100);
             }
 
             valueInput.value = (calculatedValue).toFixed(1);
