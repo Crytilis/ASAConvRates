@@ -147,13 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
         resourcesTable.querySelectorAll('tr').forEach(row => {
             const valueInput = row.querySelector('.conversion-value');
             const baseValue = parseFloat(valueInput.defaultValue);
-            valueInput.value = baseValue * tekAmount;
+            valueInput.value = Math.ceil(baseValue * tekAmount);
         });
 
         itemsTable.querySelectorAll('tr').forEach(row => {
             const valueInput = row.querySelector('.conversion-value');
             const baseValue = parseFloat(valueInput.defaultValue);
-            valueInput.value = baseValue * tekAmount;
+            valueInput.value = Math.ceil(baseValue * tekAmount);
         });
     }
 
