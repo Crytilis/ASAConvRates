@@ -25,6 +25,25 @@ header img {
     margin-top: 10px;
 }
 
+.mode-toggle {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.mode-toggle button {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.mode-toggle button.active {
+    background-color: #3498db;
+}
+
 .conversion-tables {
     display: flex;
     justify-content: space-between;
