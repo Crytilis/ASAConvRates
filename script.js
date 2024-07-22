@@ -146,13 +146,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resourcesTable.querySelectorAll('tr').forEach(row => {
             const valueInput = row.querySelector('.conversion-value');
-            const baseValue = parseFloat(valueInput.defaultValue);
+            let baseValue = parseFloat(valueInput.defaultValue);
+            if (baseValue === 0) {
+                baseValue = 1;
+            }
             valueInput.value = (baseValue * tekAmount).toFixed(1);
         });
 
         itemsTable.querySelectorAll('tr').forEach(row => {
             const valueInput = row.querySelector('.conversion-value');
-            const baseValue = parseFloat(valueInput.defaultValue);
+            let baseValue = parseFloat(valueInput.defaultValue);
+            if (baseValue === 0) {
+                baseValue = 1;
+            }
             valueInput.value = (baseValue * tekAmount).toFixed(1);
         });
     }
