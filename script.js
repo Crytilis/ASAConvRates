@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copy-btn");
     const publicModeBtn = document.getElementById("public-mode-btn");
     const traderModeBtn = document.getElementById("trader-mode-btn");
+    const outputSection = document.getElementById("output-section");
+    const convertLabel = document.getElementById("convert-label");
     const modeIndicator = document.createElement('div');
 
     modeIndicator.id = 'mode-indicator';
@@ -152,11 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
             publicModeBtn.classList.add("active");
             traderModeBtn.classList.remove("active");
 
-            tekAmountInput.style.display = "block";
+            convertLabel.textContent = "Enter Tek Amount To Convert";
+            tekAmountInput.style.display = "inline-block";
             tekAmountInput.style.margin = "0 auto";
             generateBtn.style.display = "none";
-            acceptedList.style.display = "none";
-            copyBtn.style.display = "none";
+            outputSection.style.display = "none";
 
             resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.setAttribute("readonly", "readonly");
@@ -180,11 +182,11 @@ document.addEventListener("DOMContentLoaded", () => {
             publicModeBtn.classList.remove("active");
             traderModeBtn.classList.add("active");
 
+            convertLabel.textContent = "Select Your Accepted Items/Resource Then Click The Button Below";
             tekAmountInput.style.display = "none";
             generateBtn.style.display = "block";
             generateBtn.style.margin = "0 auto";
-            acceptedList.style.display = "block";
-            copyBtn.style.display = "block";
+            outputSection.style.display = "block";
 
             resourcesTable.querySelectorAll('.conversion-value').forEach(input => {
                 input.removeAttribute("readonly");
