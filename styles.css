@@ -127,6 +127,7 @@ button:hover {
     cursor: pointer;
     display: block;
     margin-left: auto;
+    margin-right: 0;
 }
 
 #populate-btn:hover {
